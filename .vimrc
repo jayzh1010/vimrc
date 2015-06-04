@@ -83,6 +83,10 @@ Plugin 'groenewege/vim-less'
 Plugin 'mattn/emmet-vim'
 Plugin 'git@github.com:scrooloose/nerdtree.git'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Raimondi/delimitMate' "complete the bracket, parenthesis and so on
+Plugin 'Yggdroot/indentLine'
 
 
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -170,7 +174,17 @@ set tags=./tags,./TAGS,tags;~,TAGS;~
 
 " }
 
+" { airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+" }
 
+" { ctrlP
+let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" }
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -266,9 +280,8 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
-
-colorscheme desert
 set background=dark
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
