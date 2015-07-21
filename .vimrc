@@ -83,15 +83,26 @@ Plugin 'groenewege/vim-less'
 Plugin 'mattn/emmet-vim'
 Plugin 'git@github.com:scrooloose/nerdtree.git'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'kien/ctrlp.vim'         " search file
+Plugin 'airblade/vim-gitgutter' " git plugin
 Plugin 'Raimondi/delimitMate' "complete the bracket, parenthesis and so on
-Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine' " beautifule indelt line
 
+Plugin 'Valloric/YouCompleteMe'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+
+" After Installing YouCompleteMe, also should:
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer --gocode-completer
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
-Plugin 'SuperTab'
+
+
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -134,45 +145,6 @@ let g:tagbar_width=50
 set tags=./tags,./TAGS,tags;~,TAGS;~
 " }
 
-" { nerd tree tab
-
-" g:nerdtree_tabs_open_on_gui_startup = 1
-" Open NERDTree on gvim/macvim startup
- 
-" g:nerdtree_tabs_open_on_console_startup = 0
-" Open NERDTree on console vim startup
- 
-" g:nerdtree_tabs_no_startup_for_diff = 1
-" Do not open NERDTree if vim starts in diff mode
- 
-" g:nerdtree_tabs_smart_startup_focus = 1
-" On startup, focus NERDTree if opening a directory, focus file if opening a file. (When set to 2, always focus file window after startup).
- 
-" g:nerdtree_tabs_open_on_new_tab = 1
-" Open NERDTree on new tab creation (if NERDTree was globally opened by :NERDTreeTabsToggle)
- 
-" g:nerdtree_tabs_meaningful_tab_names = 1
-" Unfocus NERDTree when leaving a tab for descriptive tab names
- 
-" g:nerdtree_tabs_autoclose = 1
-" Close current tab if there is only one window in it and it's NERDTree
- 
-" g:nerdtree_tabs_synchronize_view = 1
-" Synchronize view of all NERDTree windows (scroll and cursor position)
- 
-" g:nerdtree_tabs_synchronize_focus = 1
-" Synchronize focus when switching windows (focus NERDTree after tab switch if and only if it was focused before tab switch)
- 
-" g:nerdtree_tabs_focus_on_files = 0
-" When switching into a tab, make sure that focus is on the file window, not in the NERDTree window. (Note that this can get annoying if you use NERDTree's feature "open in new tab silently", as you will lose focus on the NERDTree.)
- 
-" g:nerdtree_tabs_startup_cd = 1
-" When given a directory name as a command line parameter when launching Vim, :cd into it.
- 
-" g:nerdtree_tabs_autofind = 0
-" Automatically find and select currently opened file in NERDTree.
-
-" }
 
 " { airline
 let g:airline_powerline_fonts = 1
@@ -185,6 +157,23 @@ let g:ctrlp_map = '<c-p>'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " }
+
+" { python-mode
+let g:pymode_options_max_line_length = 120
+" }
+
+" { make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" }
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "ii"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }
+
+
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
