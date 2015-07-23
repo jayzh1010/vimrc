@@ -70,34 +70,40 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Bundle "pangloss/vim-javascript"
-Plugin 'othree/html5.vim'
-Plugin 'klen/python-mode'
 Plugin 'majutsushi/tagbar'
-Plugin 'taglist.vim'
-Plugin 'groenewege/vim-less'
-Plugin 'mattn/emmet-vim'
-Plugin 'git@github.com:scrooloose/nerdtree.git'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'         " search file
-Plugin 'airblade/vim-gitgutter' " git plugin
-Plugin 'Raimondi/delimitMate' "complete the bracket, parenthesis and so on
-Plugin 'Yggdroot/indentLine' " beautifule indelt line
+Plugin 'easymotion/vim-easymotion'
 
+" { language
+Plugin 'plasticboy/vim-markdown'
+Plugin 'pangloss/vim-javascript'
+Plugin 'klen/python-mode'
+" }
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+
+" { git plugin
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+" }
+
+Plugin 'Raimondi/delimitMate' " complete the bracket, parenthesis and so on
+Plugin 'Yggdroot/indentLine'  " beautifule indent line
+Plugin 'godlygeek/tabular'    " indent sign
+Plugin 'kien/ctrlp.vim'       " search file
+
+" { code complete
+" After Installing YouCompleteMe, also should:
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer --gocode-completer
 Plugin 'Valloric/YouCompleteMe'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-
-
-" After Installing YouCompleteMe, also should:
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer --gocode-completer
+" }
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
@@ -135,11 +141,10 @@ filetype plugin indent on    " required
 let g:vim_markdown_folding_disabled=1
 " }
 
-" { vim-less
-" nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+" { vim-javascript
+let javascript_enable_domhtmlcss=1
 " }
-
-" { ctags
+" { tagbar ctags
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=50
 set tags=./tags,./TAGS,tags;~,TAGS;~
@@ -160,6 +165,9 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " { python-mode
 let g:pymode_options_max_line_length = 120
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+" let g:pymode_virtualenv = 0
 " }
 
 " { make YCM compatible with UltiSnips (using supertab)
@@ -171,13 +179,21 @@ let g:pymode_options_max_line_length = 120
 let g:UltiSnipsExpandTrigger = "ii"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 " }
 
+
+" { easymogion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+" }
 
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
+
+set mouse=a
 
 " Enable filetype plugins
 filetype plugin on
