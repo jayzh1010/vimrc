@@ -38,6 +38,7 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:python_host_prog = '/usr/local/bin/python'
 " coanor added
 set nu
 let filetype_m='objc'
@@ -109,6 +110,7 @@ Plugin 'honza/vim-snippets'
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim'
     Plugin 'zchee/deoplete-jedi'
+    let g:deoplete#enable_at_startup = 1
 else
     Plugin 'Shougo/neocomplete.vim'
     Plugin 'davidhalter/jedi-vim'
