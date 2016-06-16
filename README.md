@@ -5,9 +5,13 @@ my vimrc, based on the amix/vimrc(git@github.com:amix/vimrc.git)
 1. clone this repo
 
     /usr/bin/env git clone git://github.com/jayzh1010/vimrc.git $HOME/.vim
+
     ln -s $HOME/.vim/vimrc $HOME/.vimrc
+
     mkdir $HOME/.config
+
     ln -s $HOME/.vim $HOME/.config/nvim
+
     ln -s $HOME/.vim/vimrc $HOME/.config/nvim/init.vim
 
 2. set up vundle
@@ -17,4 +21,5 @@ my vimrc, based on the amix/vimrc(git@github.com:amix/vimrc.git)
 3. set up plugin
 
     vim 
+
     :PluginInstall
