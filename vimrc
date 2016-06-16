@@ -95,24 +95,35 @@ Plugin 'Yggdroot/indentLine'  " beautifule indent line
 Plugin 'godlygeek/tabular'    " indent sign
 Plugin 'kien/ctrlp.vim'       " search file
 
-" { code complete
-" After Installing YouCompleteMe, also should:
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer --gocode-completer
-" Plugin 'Valloric/YouCompleteMe'
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
+Plugin 'Shougo/neosnippet'
 Plugin 'honza/vim-snippets'
-" }
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+" Don't use the default snippets: neosnippet-snippets
+let g:neosnippet#disable_runtime_snippets = {'_' : 1,}
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 
 " Build compat
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim'
-    Plugin 'zchee/deoplete-jedi'
     let g:deoplete#enable_at_startup = 1
+    inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
+
+    Plugin 'zchee/deoplete-jedi'
 else
     Plugin 'Shougo/neocomplete.vim'
+    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+
     Plugin 'davidhalter/jedi-vim'
 end
 
@@ -179,18 +190,6 @@ let g:pymode_options_max_line_length = 120
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 " let g:pymode_virtualenv = 0
-" }
-
-" { make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" }
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "ii"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
 " }
 
 
