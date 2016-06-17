@@ -95,6 +95,8 @@ Plugin 'Yggdroot/indentLine'  " beautifule indent line
 Plugin 'godlygeek/tabular'    " indent sign
 Plugin 'kien/ctrlp.vim'       " search file
 
+Plugin 'EasyGrep'
+
 Plugin 'Shougo/neosnippet'
 Plugin 'honza/vim-snippets'
 
