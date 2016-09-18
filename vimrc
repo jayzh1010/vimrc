@@ -39,6 +39,8 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " coanor added
 set nu
 let filetype_m='objc'
@@ -185,7 +187,6 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " { python-mode
 let g:pymode_options_max_line_length = 120
 let g:pymode_rope_goto_definition_bind = "<C-]>"
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 " let g:pymode_virtualenv = 0
 " }
 
