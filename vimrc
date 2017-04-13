@@ -115,6 +115,7 @@ if has('nvim')
     inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
 
     Plugin 'zchee/deoplete-jedi'
+    let g:deoplete#sources#jedi#show_docstring = 1
 else
     Plugin 'Shougo/neocomplete.vim'
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -186,6 +187,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " { python-mode
 let g:pymode_rope_completion = 0
+let g:pymode_rope_goto_definition_cmd = 'vnew' "  values can be (e, new, vnew)
 let g:pymode_options_max_line_length = 120
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 " let g:pymode_virtualenv = 0
