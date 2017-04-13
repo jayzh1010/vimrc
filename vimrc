@@ -185,6 +185,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " }
 
 " { python-mode
+let g:pymode_rope_completion = 0
 let g:pymode_options_max_line_length = 120
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 " let g:pymode_virtualenv = 0
