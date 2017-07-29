@@ -4,9 +4,11 @@ my vimrc, based on the amix/vimrc(git@github.com:amix/vimrc.git)
 
 1. clone this repo
 
-    /usr/bin/env git clone git://github.com/jayzh1010/vimrc.git $HOME/.vim
+    git clone git://github.com/jayzh1010/vimrc.git $HOME/.vim
 
     ln -s $HOME/.vim/vimrc $HOME/.vimrc
+
+    add the solarized colors
 
     mkdir $HOME/.config
 
