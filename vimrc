@@ -52,6 +52,7 @@ set background=dark
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
+set mouse=a
 
 
 
@@ -181,6 +182,10 @@ let g:pymode_rope_goto_definition_bind = "<C-]>"
 " let g:pymode_virtualenv = 0
 " }
 
+" {
+let g:go_template_autocreate = 0
+
+" }
 
 " { easymogion
 map  / <Plug>(easymotion-sn)
@@ -427,7 +432,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
