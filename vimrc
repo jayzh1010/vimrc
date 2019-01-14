@@ -40,95 +40,82 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " jaylzhang added
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 inoremap jj <ESC>
 
 set nu
+set nowrap
 
 " Use the Solarized Dark theme
-set background=dark
+" set background=dark
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 set mouse=a
 
+""""" below is for vim-plug
+"""" https://github.com/junegunn/vim-plug
+"""" curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 
+call plug#begin('~/.vim/plugged')
 
-""""" below is for vundle
+Plug 'vim-airline/vim-airline'
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'L9'
-Plugin 'yegappan/mru'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'easymotion/vim-easymotion'
-
-" { for document
-Plugin 'junegunn/goyo.vim'
-Plugin 'amix/vim-zenroom2'
+" { for document markdown
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
 " }
 
 " { language
-Plugin 'plasticboy/vim-markdown'
-Plugin 'pangloss/vim-javascript'
-Plugin 'klen/python-mode'
-Plugin 'fatih/vim-go'
+Plug 'plasticboy/vim-markdown'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+
+Plug 'fatih/vim-go'
+
+" Plug 'pangloss/vim-javascript'
+Plug 'chemzqm/wxapp.vim'
 " }
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-
 
 " { git plugin
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " }
 
-Plugin 'Raimondi/delimitMate' " complete the bracket, parenthesis and so on
-Plugin 'Yggdroot/indentLine'  " beautifule indent line
-Plugin 'godlygeek/tabular'    " indent sign
-Plugin 'kien/ctrlp.vim'       " search file
 
-Plugin 'EasyGrep'
+Plug 'Raimondi/delimitMate' " complete the bracket, parenthesis and so on
+Plug 'Yggdroot/indentLine'  " beautifule indent line
+Plug 'godlygeek/tabular'    " indent sign
+Plug 'kien/ctrlp.vim'       " search file
 
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/neosnippet'
+Plug 'dkprice/vim-easygrep'
 
-" Build compat
+
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet'
+
 if has('nvim')
-    Plugin 'Shougo/deoplete.nvim'
-    let g:deoplete#enable_at_startup = 1
-    inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    Plugin 'zchee/deoplete-jedi'
-    let g:deoplete#sources#jedi#show_docstring = 1
+    Plug 'zchee/deoplete-jedi'
 else
-    Plugin 'Shougo/neocomplete.vim'
-    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-    " Disable AutoComplPop.
-    let g:acp_enableAtStartup = 0
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 
-    Plugin 'davidhalter/jedi-vim'
+    Plug 'davidhalter/jedi-vim' 
 end
 
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
+
+
 filetype plugin indent on    " required
 "
 " Brief help
@@ -142,6 +129,11 @@ filetype plugin indent on    " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -152,15 +144,25 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:vim_markdown_folding_disabled=1
 " }
 
-" { vim-javascript
-let javascript_enable_domhtmlcss=1
-" }
 " { tagbar ctags
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=50
 set tags=./tags,./TAGS,tags;~,TAGS;~
 " }
 
+" { nerd tree
+map <leader>tr <plug>NERDTreeTabsToggle<CR>
+" }
+
+" { tabular
+let mapleader=','
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+" }=
 
 " { airline
 let g:airline_powerline_fonts = 1
@@ -175,11 +177,49 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " }
 
 " { python-mode
-let g:pymode_rope_completion = 0
-let g:pymode_rope_goto_definition_cmd = 'vnew' "  values can be (e, new, vnew)
-let g:pymode_options_max_line_length = 120
-let g:pymode_rope_goto_definition_bind = "<C-]>"
-" let g:pymode_virtualenv = 0
+let g:pymode_python = 'python3'
+" 打开折叠功能
+let g:pymode_folding = 1
+" 打开代码块的移动功能
+let g:pymode_motion = 1
+" 禁用pymode的文档, 使用jedi-vim的，更好用
+let g:pymod_doc = 0
+" 支持虚拟环境.pyenv virtualenv
+" let g:pymode_virtualenv = 1
+" 关闭断点功能
+let g:pymode_breakpoint = 1
+" 代码检查
+let g:pymode_lint = 1
+" 关闭E501的告警(单行字符超过80)
+let g:pymode_lint_ignore = ["E501"]
+
+let g:pymode_rope = 0
+" let g:pymode_rope_completion = 1
+" let g:pymode_rope_complete_on_bot = 1
+" let g:pymode_rope_goto_definition_cmd = 'vnew' "  values can be (e, new, vnew)
+" let g:pymode_rope_goto_definition_bind = "<C-]>"
+" }
+
+" { deoplete
+inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
+" let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#enable_at_startup = 1
+let g:acp_enableAtStartup = 0
+" }
+
+" { jedi-vim
+" 不使用重命名，保留ctrl-r用于python-mode的运行
+" let g:jedi#force_py_version = '3.7.0'
+:py3 sys.executable='/usr/local/bin/python3'
+let g:jedi#rename_command = ""
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
 " }
 
 " {
@@ -193,6 +233,51 @@ omap / <Plug>(easymotion-tn)
 " }
 
 
+
+
+" {
+let g:user_emmet_settings = {
+  \ 'wxss': {
+  \   'extends': 'css',
+  \ },
+  \ 'wxml': {
+  \   'extends': 'html',
+  \   'aliases': {
+  \     'div': 'view',
+  \     'span': 'text',
+  \   },
+  \  'default_attributes': {
+  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+  \     'navigator': [{'url': '', 'redirect': 'false'}],
+  \     'scroll-view': [{'bindscroll': ''}],
+  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+  \     'icon': [{'type': 'success', 'size': '23'}],
+  \     'progress': [{'precent': '0'}],
+  \     'button': [{'size': 'default'}],
+  \     'checkbox-group': [{'bindchange': ''}],
+  \     'checkbox': [{'value': '', 'checked': ''}],
+  \     'form': [{'bindsubmit': ''}],
+  \     'input': [{'type': 'text'}],
+  \     'label': [{'for': ''}],
+  \     'picker': [{'bindchange': ''}],
+  \     'radio-group': [{'bindchange': ''}],
+  \     'radio': [{'checked': ''}],
+  \     'switch': [{'checked': ''}],
+  \     'slider': [{'value': ''}],
+  \     'action-sheet': [{'bindchange': ''}],
+  \     'modal': [{'title': ''}],
+  \     'loading': [{'bindchange': ''}],
+  \     'toast': [{'duration': '1500'}],
+  \     'audio': [{'src': ''}],
+  \     'video': [{'src': ''}],
+  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+  \   }
+  \ },
+  \}
+
+" }
+
+
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -201,10 +286,6 @@ set history=500
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -342,6 +423,7 @@ set smarttab
 
 " 1 tab == 4 spaces
 set shiftwidth=4
+autocmd FileType javascript set shiftwidth=2
 set tabstop=4
 
 " Linebreak on 500 characters
@@ -366,8 +448,8 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+" map <space> /
+" map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>

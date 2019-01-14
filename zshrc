@@ -59,7 +59,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx brew python go npm pyenv redis-cli docker zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git osx brew python go npm pyenv redis-cli docker docker-machine docker-compose zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,21 +107,20 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # dircolors for colorful terminal
 PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-alias ls='ls -F --show-control-chars --color=auto'
 eval `gdircolors -b $HOME/.dir_colors/dircolors.ansi-dark`
-alias grep='grep --color'
-alias egrep='egrep --color'
-alias fgrep='fgrep --color'
+alias ls='ls -F --show-control-chars --color=auto'
+alias dir='dir --color=auto' 
+alias vdir='vdir --color=auto' 
+alias grep='grep --color=auto' 
+alias fgrep='fgrep --color=auto' 
+alias egrep='egrep --color=auto' 
+alias tree='tree -C'
+
+
 
 # proxychain
 alias prxch=proxychains4
 
-
-
-
-# add gvm to control the golang version
-export GVM_ROOT=$HOME/.gvm
-. $GVM_ROOT/scripts/gvm
 
 export GOPATH=$HOME/Repo/Mine/golang
 export PATH=$PATH:$GOPATH/bin
@@ -129,13 +128,14 @@ export PATH=$PATH:$GOPATH/bin
 
 # for java
 # maven
-export M2_HOME=~/.m2/apache-maven-3.3.9
-export PATH=$M2_HOME/bin:$PATH:$JAVA_HOME/bin
+# export PATH=~/apache-maven-3.5.0/bin:$PATH:$JAVA_HOME/bin
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-
-alias go_baolei="ssh-add; ssh -A jieliang.zhang@192.168.21.250"
 
 # below is for zues_core run scripts
 export VES_APP_PORT="8191"
-export VES_APP_HAPROXY_PORT="8696"
+export VES_APP_HAPROXY_PORT="8191"
 export VES_APP_WORKER_NUM="1"
+
+export NVM_DIR="$HOME/.nvm"
+source "/usr/local/opt/nvm/nvm.sh"
